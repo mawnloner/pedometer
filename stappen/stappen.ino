@@ -5,13 +5,11 @@
 #include <ArduinoJson.h>
 MMA7660 accelerometer;
 
-// const char *ssid = "Mutahar";
-// const char *password = "someGeamers";
-const char *ssid = "myPhone";
-const char *password = "arthuristhebest";
+const char *ssid = "ssid";
+const char *password = "psw";
 WiFiClientSecure client;
 HTTPClient http;
-const String serverName = "https://www.schoolmoettestdomeinenhebben.nl";
+const String serverName = "https://www.domein.nl";
 const String url = "/graphql";
 int httpsPort = 443;
 
@@ -38,9 +36,9 @@ void setup()
     accelerometer.init();
 
     // get a cookie from the server
-    http.begin(client, "https://www.schoolmoettestdomeinenhebben.nl/graphql");
+    http.begin(client, "https://www.domein.nl/graphql");
     http.addHeader("Content-Type", "application/json");
-    String requestBody = "{\"query\":\"query{login(username: \\\"azertycho\\\", password: \\\"123\\\")}\"}";
+    String requestBody = "{\"query\":\"query{login(username: \\\"username\\\", password: \\\"pswd\\\")}\"}";
     int httpResponseCode = http.POST (requestBody); //Send the request
     String response = http.getString (); //Get the response payload
     Serial.println("httpResCode en Response");
@@ -129,7 +127,7 @@ void loop()
             {
               int aantalStappen = 10;
                 // send step to server
-                http.begin(client, "https://www.schoolmoettestdomeinenhebben.nl/graphql");
+                http.begin(client, "https://www.domein.nl/graphql");
                 http.addHeader("Content-Type", "application/json");
                 String mutationQuery = "{\"query\": \"mutation { stappen(aantalStappen: " + String(aantalStappen) + ", cookie: \\\"" + token + "\\\") { message code } }\"}";
                 Serial.println("Sending mutation request...");
