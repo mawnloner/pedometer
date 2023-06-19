@@ -1,5 +1,5 @@
 # pedometer
-Stappenteller voor de beroepsopdracht Stapify
+Stappenteller voor de beroepsopdracht Stapify (juni 2023)
 
 De code die in deze repo staat is alleen de stappenteller, wat is geprogrammeerd in Arduino-based C.
 
